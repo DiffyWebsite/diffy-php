@@ -181,8 +181,8 @@ class Project
      *
      * @return mixed
      */
-    public static function updateYaml(int $projectId, array $data)
+    public static function updateYaml(int $projectId, string $filePath)
     {
-        return Diffy::request('PUT', 'projects/' . $projectId . '/cli', $data);
+        return Diffy::request('POST', 'projects/' . $projectId . '/update-project-yaml', [], [], ['yaml_file' => $filePath]);
     }
 }

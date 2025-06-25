@@ -102,7 +102,7 @@ class Diffy
     /**
      * Do a HTTP request. Wrapper to pass Authentication behind the scene.
      */
-    public static function request($type, $uri, $data = [], $params = [])
+    public static function request($type, $uri, $data = [], $params = [], $uploadFiles = [])
     {
         $params['headers'] = [
             'Authorization' => 'Bearer ' . self::getApiToken(),
@@ -113,7 +113,20 @@ class Diffy
         }
 
         try {
+            if (!empty($uploadFiles)) {
+                if (!isset($params['multipart'])) {
+                    $params['multipart'] = [];
+                }
+                foreach ($uploadFiles as $fieldName => $filePath) {
+                    $params['multipart'][] = [
+                        'name' => $fieldName,
+                        'contents' => fopen($filePath, 'r'),
+                    ];
+                }
+            }
+
             $response = self::getClient()->request($type, $uri, $params);
+
             $responseBodyAsString = json_decode($response->getBody()->getContents(), true);
         } catch (ClientException $e) {
             $response = $e->getResponse();
