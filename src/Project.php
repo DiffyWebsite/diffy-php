@@ -92,6 +92,10 @@ class Project
             $arguments['commitSha'] = $params['commitSha'];
         }
 
+        if (isset($params['mergeRequestIid'])) {
+            $arguments['mergeRequestIid'] = $params['mergeRequestIid'];
+        }
+
         return Diffy::request('POST', 'projects/' . $projectId . '/compare', $arguments);
     }
 
