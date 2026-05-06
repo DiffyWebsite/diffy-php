@@ -205,31 +205,6 @@ class Screenshot
     }
 
     /**
-     * Create Screenshot from browserstack.
-     *
-     * @param int $projectId
-     * @param array $screenshots
-     *
-     * @return mixed
-     *
-     * @throws InvalidArgumentsException
-     */
-    public static function createBrowserStackScreenshot(int $projectId, array $screenshots)
-    {
-        if (empty($projectId)) {
-            throw new InvalidArgumentsException('Project ID can not be empty');
-        }
-
-        if (empty($screenshots)) {
-            throw new InvalidArgumentsException('Screenshots list can not be empty');
-        }
-
-        return Diffy::request('POST', 'projects/' . $projectId . '/create-browser-stack-screenshot', [
-            'screenshots' => $screenshots,
-        ]);
-    }
-
-    /**
      * Create Screenshot with custom files.
      *
      * @param int $projectId
