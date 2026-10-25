@@ -41,3 +41,14 @@ $key = 'c31fec8e123e479e75d46744c13a7d91';
 //$data[] = ['file'=> fopen(__DIR__.'/1280.png', 'r'), 'url'=> '/', 'breakpoint'=> 1280];
 //
 //print_r(\Diffy\Screenshot::createCustomScreenshot($project_id, $data, $screenshotName));
+
+// Register a user with a coupon, then create an API key with the returned token.
+//$registration = \Diffy\User::create('Jane Doe', 'jane@example.com', $password, 'claude-code?utm_source=claude-code', 'CLAUDE2026');
+//\Diffy\Diffy::setApiToken($registration['token']);
+//print_r(\Diffy\Key::create('my laptop'));
+
+// Send a password reset email.
+//\Diffy\User::sendResetPasswordEmail('jane@example.com');
+
+// Send feedback on a diff.
+//\Diffy\Feedback::create($diffId, 'useful', 'Caught a header overflow at 640px.', 'my-client');
