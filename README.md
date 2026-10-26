@@ -32,6 +32,17 @@ print_r(\Diffy\Screenshot::create(132, 'production'));
 
 See examples.php file for more examples.
 
+## Environment
+
+By default the client talks to production (`app.diffy.website`). To use a different
+Diffy environment (e.g. staging), set the `DIFFY_API_HOST` environment variable to its hostname:
+
+```bash
+export DIFFY_API_HOST=staging.diffy.website
+```
+
+API calls then go to `https://<host>/api/`. Remember to use an API key created in that environment.
+
 ## Documentation
 
 See the [Diffy REST API Swagger](https://app.diffy.website/rest).

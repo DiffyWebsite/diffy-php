@@ -80,7 +80,29 @@ class Diffy
      */
     public static function getApiBaseUrl()
     {
-        return self::$baseUrl;
+        $host = self::getHostFromEnv();
+
+        return $host ? 'https://' . $host . '/api/' : self::$baseUrl;
+    }
+
+    /**
+     * @return string Base URL for links to the Diffy UI.
+     */
+    public static function getUiBaseUrl()
+    {
+        $host = self::getHostFromEnv();
+
+        return $host ? 'https://' . $host . '/#/' : self::$uiBaseUrl;
+    }
+
+    /**
+     * @return string|null Hostname from DIFFY_API_HOST env variable (e.g. to use staging instead of production).
+     */
+    protected static function getHostFromEnv()
+    {
+        $host = trim((string) getenv('DIFFY_API_HOST'), " \t\n\r\0\x0B/");
+
+        return $host !== '' ? $host : null;
     }
 
     /**
